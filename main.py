@@ -27,6 +27,7 @@ SELECT id, marque, modele, prix
 FROM phones
 WHERE prix > ?
 ORDER BY prix DESC
+LIMIT 1
 """, (800,))
 
 db_telephones = db_curseur.fetchall()
