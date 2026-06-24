@@ -21,6 +21,7 @@ db_curseur.execute("""
 SELECT id, marque, modele, prix
 FROM phones
 WHERE prix > ?
+ORDER BY prix DESC
 """, (800,))
 
 db_telephones = db_curseur.fetchall()
