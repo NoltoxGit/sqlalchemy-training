@@ -23,19 +23,6 @@ FROM phones
 WHERE prix > ?
 """, (800,))
 
-db_curseur.execute("""
-UPDATE phones
-SET prix = ?
-WHERE modele = ?
-""", (399, "Galaxy S24"))
-
-db_curseur.execute("""
-DELETE FROM phones
-WHERE modele = ?
-""", ("Galaxy S24",))
-
-print(db_curseur.rowcount)
-
 db_telephones = db_curseur.fetchall()
 
 for query_telephones in db_telephones:
