@@ -1,16 +1,61 @@
-# This is a sample Python script.
-
-# Press Ctrl+F5 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from database import Base, engine, SessionLocal
+from models import Liste_Telephones
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press F9 to toggle the breakpoint.
+def create_database() -> None:
+    Base.metadata.create_all(bind=engine)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def add_phone() -> None:
+    session = SessionLocal()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    try:
+        phone = Liste_Telephones(
+            marque="Samsung",
+            modele="Galaxy S24",
+            espace_stockage=256,
+            memoire_ram=8,
+            prix=899,
+        );
+        phone = Liste_Telephones(
+            marque="Samsung",
+            modele="Galaxy A35",
+            espace_stockage=128,
+            memoire_ram=6,
+            prix=238,
+        )
+
+        session.add(phone)
+        session.commit()
+        session.refresh(phone)
+
+        print(f"Téléphone ajouté avec l'id : {phone.id}")
+
+    except Exception:
+        session.rollback()
+        raise
+
+    finally:
+        session.close()
+
+
+def list_phones() -> None:
+    session = SessionLocal()
+
+    try:
+        phones = session.query(Liste_Telephones).all()
+
+        for phone in phones:
+            print(
+                f"{phone.id} - {phone.marque} {phone.modele} "
+                f"({phone.espace_stockage} Go, {phone.memoire_ram} Go RAM) - {phone.prix} €"
+            )
+
+    finally:
+        session.close()
+
+
+if __name__ == "__main__":
+    create_database()
+    add_phone()
+    list_phones()
