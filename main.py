@@ -27,12 +27,12 @@ db_curseur.execute("""
 UPDATE phones
 SET prix = ?
 WHERE modele = ?
-""", (399, "Galaxy A55"))
+""", (399, "Galaxy S24"))
 
 db_curseur.execute("""
 DELETE FROM phones
 WHERE modele = ?
-""", ("Galaxy A55",))
+""", ("Galaxy S24",))
 
 print(db_curseur.rowcount)
 
