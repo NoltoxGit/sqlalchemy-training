@@ -1,7 +1,7 @@
 import sqlite3
 
-connexion = sqlite3.connect("phones.db")
-db_curseur = connexion.cursor()
+db_connexion = sqlite3.connect("phones.db")
+db_curseur = db_connexion.cursor()
 
 db_curseur.execute("""
 CREATE TABLE IF NOT EXISTS phones (
@@ -29,5 +29,5 @@ for query_telephones in db_telephones:
     id_telephone, marque, modele, prix = query_telephones
     print(f"ID: {id_telephone} • Le téléphone \"{marque} {modele}\" coûte {prix}€")
 
-connexion.commit()
-connexion.close()
+db_connexion.commit()
+db_connexion.close()
