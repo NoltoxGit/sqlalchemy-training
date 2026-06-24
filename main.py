@@ -15,7 +15,12 @@ CREATE TABLE IF NOT EXISTS phones (
 db_curseur.execute("""
 INSERT INTO phones (marque, modele, prix)
 VALUES (?, ?, ?)
-""", ("Samsung", "Galaxy S24", 899))
+""", ("Samsung", "Galaxy A55", 449))
+
+db_curseur.execute("""
+INSERT INTO phones (marque, modele, prix)
+VALUES (?, ?, ?)
+""", ("Samsung", "Galaxy Z Flip6", 1199))
 
 db_curseur.execute("""
 SELECT id, marque, modele, prix
