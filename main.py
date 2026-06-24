@@ -29,6 +29,11 @@ SET prix = ?
 WHERE modele = ?
 """, (399, "Galaxy A55"))
 
+db_curseur.execute("""
+DELETE FROM phones
+WHERE modele = ?
+""", ("Galaxy A55",))
+
 print(db_curseur.rowcount)
 
 db_telephones = db_curseur.fetchall()
