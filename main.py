@@ -23,10 +23,15 @@ FROM phones
 WHERE prix > ?
 """, (800,))
 
-telephones = db_curseur.fetchall()
+db_telephones = db_curseur.fetchall()
 
-for telephone in telephones:
-    print(telephone)
+for query_telephones in db_telephones:
+    id_telephone = query_telephones[0]
+    marque = query_telephones[1]
+    modele = query_telephones[2]
+    prix = query_telephones[3]
+
+    print(f"{id_telephone} - {marque} {modele} : {prix} €")
 
 connexion.commit()
 connexion.close()
