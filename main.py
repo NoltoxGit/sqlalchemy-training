@@ -1,9 +1,9 @@
 import sqlite3
 
 connexion = sqlite3.connect("phones.db")
-curseur = connexion.cursor()
+db_curseur = connexion.cursor()
 
-curseur.execute("""
+db_curseur.execute("""
 CREATE TABLE IF NOT EXISTS phones (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     marque TEXT NOT NULL,
@@ -12,12 +12,21 @@ CREATE TABLE IF NOT EXISTS phones (
 )
 """)
 
-curseur.execute("""
+db_curseur.execute("""
 INSERT INTO phones (marque, modele, prix)
 VALUES (?, ?, ?)
 """, ("Samsung", "Galaxy S24", 899))
 
+db_curseur.execute("""
+SELECT id, marque, modele, prix
+FROM phones
+WHERE prix > ?
+""", (800,))
+
+telephones = db_curseur.fetchall()
+
+for telephone in telephones:
+    print(telephone)
+
 connexion.commit()
 connexion.close()
-
-print("Téléphone ajouté avec succès !")
