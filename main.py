@@ -15,4 +15,4 @@ CREATE TABLE IF NOT EXISTS phones (
 connexion.commit()
 connexion.close()
 
-print("Base de données créée.")
+print("La base de données vient d'être créée avec succès !")
