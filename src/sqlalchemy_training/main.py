@@ -1,11 +1,10 @@
-# -> Importation de la librairie sqlite3
 import sqlite3
 
-# -> Connexion à la base de données SQLite
+# Connexion à la base de données SQLite
 db_connexion = sqlite3.connect("sqlalchemy_training.db")
 db_curseur = db_connexion.cursor()
 
-# -> Création de la table "phones" (si elle n'existe pas déjà)
+# Création de la table phones
 db_curseur.execute("""
 CREATE TABLE IF NOT EXISTS phones (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,6 +14,7 @@ CREATE TABLE IF NOT EXISTS phones (
 )
 """)
 
+# Création de la table utilisateurs
 db_curseur.execute("""
 CREATE TABLE IF NOT EXISTS utilisateurs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS utilisateurs (
 )
 """)
 
-# -> Insertion de données dans la table "phones"
+# Insertion de téléphones
 db_curseur.execute("""
 INSERT INTO phones (marque, modele, prix)
 VALUES (?, ?, ?)
@@ -34,6 +34,7 @@ INSERT INTO phones (marque, modele, prix)
 VALUES (?, ?, ?)
 """, ("Samsung", "Galaxy Z Flip6", 1199))
 
+# Lecture du téléphone le plus cher au-dessus de 800 €
 db_curseur.execute("""
 SELECT id, marque, modele, prix
 FROM phones
@@ -44,18 +45,19 @@ LIMIT 1
 
 db_telephones = db_curseur.fetchall()
 
-for query_telephones in db_telephones:
-    id_telephone, marque, modele, prix = query_telephones
-    print(f"ID: {id_telephone} • Le téléphone \"{marque} {modele}\" coûte {prix}€")
+for telephone in db_telephones:
+    id_telephone, marque, modele, prix = telephone
+    print(f"ID: {id_telephone} • Le téléphone \"{marque} {modele}\" coûte {prix} €")
 
-# -> Insertion de données dans la table "utilisateurs"
+# Insertion d'un utilisateur
 db_curseur.execute("""
 INSERT OR IGNORE INTO utilisateurs (nom, email)
 VALUES (?, ?)
 """, ("Paul", "paul@example.com"))
 
-print(db_curseur.rowcount)
+print(f"Utilisateurs ajoutés : {db_curseur.rowcount}")
 
+# Lecture des utilisateurs
 db_curseur.execute("""
 SELECT id, nom, email
 FROM utilisateurs
@@ -67,6 +69,8 @@ for utilisateur in db_utilisateurs:
     id_utilisateur, nom, email = utilisateur
     print(f"ID: {id_utilisateur} • {nom} • {email}")
 
-# -> Commit des changements et fermeture de la connexion à la base de données
+# Validation des changements
 db_connexion.commit()
+
+# Fermeture de la connexion
 db_connexion.close()
