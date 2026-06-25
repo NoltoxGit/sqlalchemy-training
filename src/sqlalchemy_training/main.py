@@ -1,3 +1,4 @@
+
 import sqlite3
 
 db_connexion = sqlite3.connect("phones.db")
@@ -45,6 +46,13 @@ ORDER BY prix DESC
 LIMIT 1
 """, (800,))
 
+db_telephones = db_curseur.fetchall()
+
+for query_telephones in db_telephones:
+    id_telephone, marque, modele, prix = query_telephones
+    print(f"ID: {id_telephone} • Le téléphone \"{marque} {modele}\" coûte {prix}€")
+
+
 db_curseur.execute("""
 SELECT id, nom, email
 FROM utilisateurs
@@ -55,12 +63,6 @@ db_utilisateurs = db_curseur.fetchall()
 for utilisateur in db_utilisateurs:
     id_utilisateur, nom, email = utilisateur
     print(f"ID: {id_utilisateur} • {nom} • {email}")
-
-db_telephones = db_curseur.fetchall()
-
-for query_telephones in db_telephones:
-    id_telephone, marque, modele, prix = query_telephones
-    print(f"ID: {id_telephone} • Le téléphone \"{marque} {modele}\" coûte {prix}€")
 
 db_connexion.commit()
 db_connexion.close()
