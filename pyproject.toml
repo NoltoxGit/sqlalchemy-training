@@ -1,0 +1,16 @@
+[project]
+name = "sqlalchemy-training"
+version = "0.0.1"
+description = ""
+authors = [
+    {name = "Paul MULLER", email = "contact@paulmuller.dev"}
+]
+readme = "README.md"
+requires-python = ">=3.14,<4.0"
+dependencies = [
+    "poetry (>=2.4.1,<3.0.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
