@@ -83,7 +83,7 @@ def main():
 
     db_ajouter_telephone(db_curseur, "Samsung", "Galaxy A55", 399)
     db_ajouter_telephone(db_curseur, "Samsung", "Galaxy Z Flip6", 1199)
-    db_afficher_telephones(db_curseur, 0)
+    db_afficher_telephones(db_curseur, 0) # -> Affiche les téléphones dont le prix est supérieur à 0€
 
     db_ajouter_utilisateur(db_curseur, "Paul", "contact@paulmuller.dev")
     db_afficher_utilisateurs(db_curseur)
