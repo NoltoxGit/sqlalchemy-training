@@ -21,7 +21,8 @@ def db_create_utilisateur(db_curseur):
     CREATE TABLE IF NOT EXISTS utilisateur (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nom TEXT NOT NULL,
-        email TEXT NOT NULL UNIQUE
+        email TEXT NOT NULL,
+        UNIQUE(email)
     )
     """)
 
@@ -49,7 +50,7 @@ def db_afficher_telephones(db_curseur, prix_minimum):
 
     for query_telephone in db_telephones:
         id_telephone, marque, modele, prix = query_telephone
-        print(f"ID: {id_telephone} • Le téléphone \"{marque} {modele}\" coûte {prix} €")
+        print(f"[DEBUG: PHONE] ID: {id_telephone} • Le téléphone \"{marque} {modele}\" coûte {prix}€.")
 
 
 # -> Insertion d'un utilisateur
@@ -73,7 +74,7 @@ def db_afficher_utilisateurs(db_curseur):
 
     for query_utilisateur in db_utilisateurs:
         id_utilisateur, nom, email = query_utilisateur
-        print(f"ID: {id_utilisateur} • {nom} • {email}")
+        print(f"[DEBUG: USER] ID: {id_utilisateur} L'utilisateur \"{nom}\" a pour email \"{email}\".")
 
 
 # -> Fonction principale du programme
