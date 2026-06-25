@@ -2,7 +2,7 @@
 import sqlite3
 
 # -> Connexion à la base de données SQLite
-db_connexion = sqlite3.connect("database/sqlalchemy_training.db")
+db_connexion = sqlite3.connect("sqlalchemy_training.db")
 db_curseur = db_connexion.cursor()
 
 # -> Création de la table "phones" (si elle n'existe pas déjà)
