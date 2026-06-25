@@ -120,6 +120,8 @@ def db_ajouter_favori(db_curseur, utilisateur_id, telephone_id):
     VALUES (?, ?)
     """, (utilisateur_id, telephone_id))
 
+    print(f"Favoris ajoutés : {db_curseur.rowcount}")
+
 
 
 # -> Fonction principale du programme
@@ -141,16 +143,27 @@ def main():
 
     # -> Ajout d'un utilisateur et affichage des utilisateurs
     db_ajouter_utilisateur(db_curseur, "Paul", "contact@paulmuller.dev")
+    db_ajouter_utilisateur(db_curseur, "Thomas", "contact@thomasdupont.dev")
     db_afficher_utilisateurs(db_curseur)
 
     # -> Ajout d'un favori pour l'utilisateur avec l'ID 1 et le téléphone avec l'ID 1
     db_ajouter_favori(db_curseur, 1, 1)
 
-    utilisateur_id = db_get_utilisateur_id_by_email(db_curseur, "contact@paulmuller.dev")
-    telephone_id = db_get_telephone_id_by_marque_modele(db_curseur, "Samsung", "Galaxy A55")
+    utilisateur_id = db_get_utilisateur_id_by_email(
+        db_curseur,
+        "contact@paulmuller.dev"
+    )
+
+    telephone_id = db_get_telephone_id_by_marque_modele(
+        db_curseur,
+        "Samsung",
+        "Galaxy A55"
+    )
 
     if utilisateur_id is not None and telephone_id is not None:
         db_ajouter_favori(db_curseur, utilisateur_id, telephone_id)
+    else:
+        print("[DEBUG: FAVORI] Impossible d'ajouter le favori : utilisateur ou téléphone introuvable.")
     
     # -> Sauvegarde des changements et fermeture de la connexion à la base de données
     db_connexion.commit()
