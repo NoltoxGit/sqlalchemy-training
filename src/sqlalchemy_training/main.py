@@ -26,7 +26,7 @@ def db_create_utilisateur(db_curseur):
 
 
 # -> Insertion de téléphones
-def ajouter_telephones(db_curseur):
+def db_ajouter_telephones(db_curseur):
     db_curseur.execute("""
     INSERT INTO telephone (marque, modele, prix)
     VALUES (?, ?, ?)
@@ -39,7 +39,7 @@ def ajouter_telephones(db_curseur):
 
 
 # -> Affichage des téléphones
-def afficher_telephones(db_curseur, prix_minimum):
+def db_afficher_telephones(db_curseur, prix_minimum):
     db_curseur.execute("""
     SELECT id, marque, modele, prix
     FROM telephone
@@ -56,7 +56,7 @@ def afficher_telephones(db_curseur, prix_minimum):
 
 
 # -> Insertion d'un utilisateur
-def ajouter_utilisateur(db_curseur, nom, email):
+def db_ajouter_utilisateur(db_curseur, nom, email):
     db_curseur.execute("""
     INSERT OR IGNORE INTO utilisateur (nom, email)
     VALUES (?, ?)
@@ -66,7 +66,7 @@ def ajouter_utilisateur(db_curseur, nom, email):
 
 
 # -> Affichage des utilisateurs
-def afficher_utilisateurs(db_curseur):
+def db_afficher_utilisateurs(db_curseur):
     db_curseur.execute("""
     SELECT id, nom, email
     FROM utilisateur
@@ -87,11 +87,11 @@ def main():
     db_create_telephone(db_curseur)
     db_create_utilisateur(db_curseur)
 
-    ajouter_telephones(db_curseur)
-    afficher_telephones(db_curseur, 800)
+    db_ajouter_telephones(db_curseur)
+    db_afficher_telephones(db_curseur, 800)
 
-    ajouter_utilisateur(db_curseur, "Paul", "paul@example.com")
-    afficher_utilisateurs(db_curseur)
+    db_ajouter_utilisateur(db_curseur, "Paul", "paul@example.com")
+    db_afficher_utilisateurs(db_curseur)
 
     db_connexion.commit()
     db_connexion.close()
