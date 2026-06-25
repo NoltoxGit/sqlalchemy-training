@@ -33,6 +33,8 @@ def db_ajouter_telephones(db_curseur, marque, modele, prix):
     VALUES (?, ?, ?)
     """, (marque, modele, prix))
 
+    # print(f"Nombre de téléphones ajoutés dans la base de données : {db_curseur.rowcount}.")
+
 
 # -> Affichage des téléphones
 def db_afficher_telephones(db_curseur, prix_minimum):
@@ -41,7 +43,6 @@ def db_afficher_telephones(db_curseur, prix_minimum):
     FROM telephone
     WHERE prix > ?
     ORDER BY prix DESC
-    LIMIT 1
     """, (prix_minimum,))
 
     db_telephones = db_curseur.fetchall()
@@ -58,7 +59,7 @@ def db_ajouter_utilisateur(db_curseur, nom, email):
     VALUES (?, ?)
     """, (nom, email))
 
-    print(f"Utilisateur ajouté : {db_curseur.rowcount}")
+    # print(f"Nombre d'utilisateurs ajoutés dans la base de données : {db_curseur.rowcount}.")
 
 
 # -> Affichage des utilisateurs
@@ -85,7 +86,7 @@ def main():
 
     db_ajouter_telephones(db_curseur, "Samsung", "Galaxy A55", 449)
     db_ajouter_telephones(db_curseur, "Samsung", "Galaxy Z Flip6", 1199)
-    db_afficher_telephones(db_curseur, 800)
+    db_afficher_telephones(db_curseur, 0)
 
     db_ajouter_utilisateur(db_curseur, "Paul", "paul@example.com")
     db_afficher_utilisateurs(db_curseur)
