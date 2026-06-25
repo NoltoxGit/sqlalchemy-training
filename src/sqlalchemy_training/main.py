@@ -26,6 +26,18 @@ def db_create_utilisateur(db_curseur):
     """)
 
 
+# -> Création de la table "favori" si elle n'existe pas déjà
+def db_create_favori(db_curseur):
+    db_curseur.execute("""
+    CREATE TABLE IF NOT EXISTS favori (
+        utilisateur_id INTEGER NOT NULL,
+        telephone_id INTEGER NOT NULL,
+        PRIMARY KEY (utilisateur_id, telephone_id),
+        FOREIGN KEY (utilisateur_id) REFERENCES utilisateur(id),
+        FOREIGN KEY (telephone_id) REFERENCES telephone(id)
+    )
+    """)
+
 # -> Insertion d'un téléphone
 def db_ajouter_telephone(db_curseur, marque, modele, prix):
     db_curseur.execute("""
@@ -74,17 +86,22 @@ def db_afficher_utilisateurs(db_curseur):
 
 # -> Fonction principale du programme
 def main():
+    # -> Connexion à la base de données SQLite
     db_connexion = sqlite3.connect("sqlalchemy_training.db")
-    db_connexion.execute("PRAGMA foreign_keys = ON")
+    db_connexion.execute("PRAGMA foreign_keys = ON") # -> Activation de la vérification des clés étrangères
     db_curseur = db_connexion.cursor()
 
+    # -> Création des tables dans la base de données
     db_create_telephone(db_curseur)
     db_create_utilisateur(db_curseur)
+    db_create_favori(db_curseur)
 
+    # -> Ajout de téléphones et d'utilisateurs, puis affichage des résultats
     db_ajouter_telephone(db_curseur, "Samsung", "Galaxy A55", 399)
     db_ajouter_telephone(db_curseur, "Samsung", "Galaxy Z Flip6", 1199)
     db_afficher_telephones(db_curseur, 0) # -> Affiche les téléphones dont le prix est supérieur à 0€
 
+    # -> Ajout d'un utilisateur et affichage des utilisateurs
     db_ajouter_utilisateur(db_curseur, "Paul", "contact@paulmuller.dev")
     db_afficher_utilisateurs(db_curseur)
 
