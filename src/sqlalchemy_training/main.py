@@ -75,6 +75,7 @@ def db_get_telephone_id_by_marque_modele(db_curseur, marque, modele):
     return result[0]
 
 
+
 # -> Ajout des informations d'un utilisateur dans la table "utilisateur"
 def db_ajouter_utilisateur(db_curseur, nom, email):
     db_curseur.execute("""
@@ -144,9 +145,17 @@ def main():
 
     # -> Ajout d'un favori pour l'utilisateur avec l'ID 1 et le téléphone avec l'ID 1
     db_ajouter_favori(db_curseur, 1, 1)
+
+    utilisateur_id = db_get_utilisateur_id_by_email(db_curseur, "contact@paulmuller.dev")
+    telephone_id = db_get_telephone_id_by_marque_modele(db_curseur, "Samsung", "Galaxy A55")
+
+    if utilisateur_id is not None and telephone_id is not None:
+        db_ajouter_favori(db_curseur, utilisateur_id, telephone_id)
+    
     # -> Sauvegarde des changements et fermeture de la connexion à la base de données
     db_connexion.commit()
     db_connexion.close()
+
 
 
 # -> Exécution de la fonction principale uniquement si ce fichier est lancé directement
