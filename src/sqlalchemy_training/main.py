@@ -11,8 +11,7 @@ def db_create_telephone(db_curseur):
         modele TEXT NOT NULL,
         prix INTEGER NOT NULL,
         UNIQUE(marque, modele)
-    )
-    """)
+    )""")
 
 
 # -> Création de la table "utilisateur" (si elle n'existe pas déjà)
@@ -23,8 +22,7 @@ def db_create_utilisateur(db_curseur):
         nom TEXT NOT NULL,
         email TEXT NOT NULL,
         UNIQUE(email)
-    )
-    """)
+    )""")
 
 
 # -> Insertion de téléphones
@@ -85,11 +83,11 @@ def main():
     db_create_telephone(db_curseur)
     db_create_utilisateur(db_curseur)
 
-    db_ajouter_telephones(db_curseur, "Samsung", "Galaxy A55", 449)
+    db_ajouter_telephones(db_curseur, "Samsung", "Galaxy A55", 399)
     db_ajouter_telephones(db_curseur, "Samsung", "Galaxy Z Flip6", 1199)
     db_afficher_telephones(db_curseur, 0) # -> Affiche les téléphones dont le prix est supérieur à 0€
 
-    db_ajouter_utilisateur(db_curseur, "Paul", "paul@example.com")
+    db_ajouter_utilisateur(db_curseur, "Paul", "contact@paulmuller.dev")
     db_afficher_utilisateurs(db_curseur)
 
     db_connexion.commit()
