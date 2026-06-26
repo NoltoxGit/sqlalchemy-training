@@ -54,7 +54,7 @@ Python
 ## Fichiers principaux :
 
 - Code Python : [**`src/sqlalchemy_training/main.py`**](src/sqlalchemy_training/main.py)
-- Base de données : `sqlalchemy_training.db`
+- Base de données : [**`sqlalchemy_training.db`**](sqlalchemy_training.db)
 
 ## Ressources utilisées pour le projet :
 
