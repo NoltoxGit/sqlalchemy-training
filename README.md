@@ -17,7 +17,7 @@ Dans le cadre de mon stage, je me suis formé à l'utilisation de **SQLAlchemy**
 | --- | --- |
 | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" width="32"> | Langage utilisé principalement pour écrire les fonctions, lancer le programme et manipuler les données. |
 | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlalchemy/sqlalchemy-original.svg" alt="SQLAlchemy" width="32"> | ORM Python pour le coeur du projet : il permet de manipuler des tables SQL avec du code Python. |
-| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" alt="SQLite" width="32"> | Base de données locale, stockée dans le fichier `sqlalchemy_training.db`. |
+| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" alt="SQLite" width="32"> | Base de données locale, stockée dans le fichier [**`sqlalchemy_training.db`**](sqlalchemy_training.db). |
 
 ## Modèle de données travailés :
 
